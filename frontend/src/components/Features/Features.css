@@ -1,0 +1,456 @@
+/* 
+   FEATURES SECTION
+ */
+
+.features {
+    padding: 100px 40px;
+    background: #FFFDF8;
+}
+
+.features-heading {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.features-heading span {
+    display: inline-block;
+    padding: 8px 18px;
+    border-radius: 999px;
+    background: #FFF3C4;
+    color: #8B6B00;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.features-heading h2 {
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 48px;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 18px;
+}
+
+.features-heading p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: rgba(27,26,31,.7);
+}
+
+/*
+   GRID LAYOUT
+*/
+
+.features-layout {
+
+    max-width: 1200px;
+    margin: 70px auto 0;
+
+    display: grid;
+
+    grid-template-columns: repeat(3,1fr);
+
+    grid-template-areas:
+        "upload summary flash"
+        "search summary branch";
+
+    gap: 28px;
+
+}
+
+/* Grid Areas */
+
+.upload-area{
+    grid-area: upload;
+}
+
+.summary-area{
+    grid-area: summary;
+}
+
+.flashcard-area{
+    grid-area: flash;
+}
+
+.search-area{
+    grid-area: search;
+}
+
+.branch-area{
+    grid-area: branch;
+}
+
+/* 
+   COMMON CARD STYLE
+*/
+
+.upload-card,
+.summary-card,
+.flashcard-card,
+.search-card,
+.branch-card{
+
+    border-radius:38px;
+
+    padding:34px;
+
+    transition:.35s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.upload-card:hover,
+.summary-card:hover,
+.flashcard-card:hover,
+.search-card:hover,
+.branch-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 20px 45px rgba(0,0,0,.12);
+
+}
+
+/*
+   ICON
+ */
+
+.card-icon{
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.7);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin-bottom:28px;
+
+}
+
+/* 
+   TITLE
+*/
+
+.upload-card h3,
+.summary-card h3,
+.flashcard-card h3,
+.search-card h3,
+.branch-card h3{
+
+    font-size:32px;
+
+    font-family:"Space Grotesk",sans-serif;
+
+    color:var(--ink);
+
+    margin-bottom:16px;
+
+}
+
+/* 
+   DESCRIPTION
+ */
+
+.upload-card p,
+.summary-card p,
+.flashcard-card p,
+.search-card p,
+.branch-card p{
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    color:rgba(27,26,31,.72);
+
+}
+
+/* 
+   CARD COLORS
+ */
+
+.upload-card{
+    background:linear-gradient(
+        145deg,
+        #FFE07A 0%,
+        #FFC846 100%
+    );
+}
+.flashcard-card{
+    background:linear-gradient(
+        145deg,
+        #FFC7B7,
+        #FFA78A
+    );
+}
+
+.summary-card{
+    background:linear-gradient(
+        145deg,
+        #E8DDFF,
+        #CDBEFF
+    );
+}
+
+.search-card{
+    background:linear-gradient(
+        145deg,
+        #D5F2FF,
+        #B6E7FF
+    );
+}
+
+.branch-card{
+    background:linear-gradient(
+        145deg,
+        #D8F7E3,
+        #C1EED3
+    );
+}
+
+/* 
+   PREVIEW BOX
+ */
+
+.preview-box{
+
+    margin-top:35px;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+/* 
+   BUTTON CHIP*/
+
+.chip{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 16px;
+
+    border-radius:999px;
+
+    background:white;
+
+    font-size:14px;
+
+    font-weight:600;
+
+}
+
+/* 
+   MOBILE
+ */
+
+@media(max-width:1000px){
+
+.features{
+
+padding:80px 20px;
+
+}
+
+.features-heading h2{
+
+font-size:38px;
+
+}
+
+.features-layout{
+
+grid-template-columns:1fr;
+
+grid-template-areas:
+
+"upload"
+"summary"
+"flash"
+"search"
+"branch";
+
+}
+
+.upload-card,
+.summary-card,
+.flashcard-card,
+.search-card,
+.branch-card{
+
+padding:28px;
+
+}
+
+}
+
+@media(max-width:600px){
+
+.features-heading h2{
+
+font-size:32px;
+
+}
+
+.features-heading p{
+
+font-size:16px;
+
+}
+
+.card-icon{
+
+width:48px;
+height:48px;
+
+}
+
+.upload-card h3,
+.summary-card h3,
+.flashcard-card h3,
+.search-card h3,
+.branch-card h3{
+
+font-size:26px;
+
+}
+
+}
+
+
+/* ===========================
+   FLASHCARD CARD
+=========================== */
+
+.flashcard-card{
+
+    background:#FFB59E;
+
+    min-height:360px;
+
+}
+
+.flashcard-preview{
+
+    margin-top:35px;
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.flashcard-question{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    line-height:1.6;
+
+    color:#222;
+
+    margin-bottom:40px;
+
+}
+
+.flashcard-footer{
+
+    color:#666;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+
+/* ===========================
+   SEARCH CARD
+=========================== */
+
+.search-card{
+
+    background:#BEE8FF;
+
+    min-height:340px;
+
+}
+
+.search-preview{
+
+    margin-top:32px;
+
+}
+
+.search-box{
+
+    background:white;
+
+    border-radius:16px;
+
+    padding:16px 18px;
+
+    font-size:15px;
+
+    font-weight:500;
+
+    box-shadow:0 10px 22px rgba(0,0,0,.08);
+
+}
+
+.filter-tags{
+
+    margin-top:18px;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:12px;
+
+}
+
+.filter-tags span{
+
+    background:white;
+
+    padding:10px 16px;
+
+    border-radius:100px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#444;
+
+    box-shadow:0 6px 14px rgba(0,0,0,.06);
+
+}
