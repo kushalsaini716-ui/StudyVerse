@@ -7,7 +7,7 @@ import SearchCard from "./SearchCard";
 
 export default function Features() {
     return (
-        <section className="features">
+        <section className="features" id="features">
 
             <div className="features-heading">
 
