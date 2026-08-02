@@ -4,7 +4,7 @@ import upload from "../middleware/upload.js";
 import {
   uploadNote,
   getAllNotes,
-} from "../Controllers/notecontroller.js";
+} from "../Controllers/noteController.js";
 
 const router = express.Router();
 
