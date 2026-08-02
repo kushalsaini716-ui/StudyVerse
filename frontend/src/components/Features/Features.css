@@ -1,3 +1,52 @@
+.upload-link{
+
+    text-decoration:none;
+
+    color:inherit;
+
+    display:block;
+
+}
+
+.upload-link:hover{
+
+    text-decoration:none;
+
+}
+
+.upload-now-btn{
+
+    width:100%;
+
+    margin-top:25px;
+
+    background:#f1f1f3;
+
+    color:rgb(0, 0, 0);
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.upload-now-btn:hover{
+
+    transform:translateY(-2px);
+
+}
+
+
 /* 
    FEATURES SECTION
  */
