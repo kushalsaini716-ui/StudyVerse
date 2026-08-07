@@ -82,12 +82,12 @@ export const getAllNotes = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
+  console.error("GET NOTES ERROR:", error);
 
-        res.status(500).json({
-            success: false,
-            message: "Failed to fetch notes.",
-        });
-    }
+  res.status(500).json({
+    success: false,
+    message: error.message,
+  });
+}
 };
 
