@@ -8,6 +8,9 @@ import { UploadCloud, FileText } from "lucide-react";
 import { colleges } from "@/data/colleges";
 import { branches } from "@/data/branches";
 
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
+
 export default function UploadForm() {
   const inputRef = useRef(null);
 
@@ -21,7 +24,6 @@ export default function UploadForm() {
 
   const handleFile = (e) => {
     if (!e.target.files[0]) return;
-
     setFile(e.target.files[0]);
   };
 
@@ -51,7 +53,7 @@ export default function UploadForm() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/notes/upload",
+        `${API_URL}/api/notes/upload`,
         {
           method: "POST",
           body: formData,
@@ -64,10 +66,8 @@ export default function UploadForm() {
         throw new Error(data.message || "Upload failed");
       }
 
-      console.log(data);
       alert(data.message);
 
-      // Reset form after successful upload
       setFile(null);
       setCollege("");
       setBranch("");
@@ -115,7 +115,9 @@ export default function UploadForm() {
           <div>
             <h4>{file.name}</h4>
 
-            <span>{(file.size / (1024 * 1024)).toFixed(2)} MB</span>
+            <span>
+              {(file.size / (1024 * 1024)).toFixed(2)} MB
+            </span>
           </div>
         </div>
       )}
