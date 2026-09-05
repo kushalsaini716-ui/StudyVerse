@@ -31,7 +31,7 @@ export default function Features() {
                 <div className="upload-area">
                     <UploadCard />
                 </div>
-
+{/* 
                 <div className="summary-area">
                     <SummaryCard />
                 </div>
@@ -42,8 +42,12 @@ export default function Features() {
 
                 <div className="search-area">
                     <SearchCard />
-                </div>
+                </div> */}
 
+            </div>
+
+            <div className="work-in-prg" >
+                <h1>More features will be live soon</h1>
             </div>
 
         </section>

@@ -34,7 +34,7 @@ export default function Hero() {
         </div>
 
         <div className="hero-stats">
-
+{/* 
           <div className="stat">
             📄 5000+ Notes
           </div>
@@ -45,7 +45,7 @@ export default function Hero() {
 
           <div className="stat">
             🤖 AI Powered
-          </div>
+          </div> */}
 
         </div>
 
