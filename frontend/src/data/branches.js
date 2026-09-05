@@ -1,7 +1,10 @@
 export const branches = [
-  "Mechanical",
+  "Chemical Engineering",
+  "Civil Engineering",
   "Computer Science",
-  "Electrical",
-  "Civil",
-  "Chemical",
+  "Electrical Engineering",
+  "Electronics and Communication Engineering",
+  "Metallurgical and Materials Engineering",
+  "Mechanical Engineering ",
+  "Mathematics and Computing Engineering",
 ];
