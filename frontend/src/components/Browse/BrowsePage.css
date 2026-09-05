@@ -1,78 +1,137 @@
+/* =========================
+   Browse Page
+========================= */
+
 .browse-page {
   min-height: 100vh;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   background: #faf6ec;
   padding: 120px 40px 80px;
+  overflow-x: hidden;
 }
 
+
+/* =========================
+   Header
+========================= */
+
 .browse-header {
+  width: 100%;
   max-width: 800px;
   margin: 0 auto 50px;
   text-align: center;
+  box-sizing: border-box;
 }
 
 .browse-header h1 {
   font-size: 58px;
   font-weight: 700;
   color: #1f1f24;
-  margin-bottom: 18px;
+  margin: 0 0 18px;
   font-family: "Space Grotesk", sans-serif;
+  line-height: 1.15;
 }
 
 .browse-header p {
   color: #666;
   font-size: 18px;
   line-height: 1.8;
+  margin: 0;
 }
 
-/* Search Panel */
+
+/* =========================
+   Search Panel
+========================= */
 
 .search-panel {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
+
   background: white;
   padding: 28px;
   border-radius: 28px;
-  box-shadow: 0 12px 35px rgba(0,0,0,.08);
+
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
 
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr auto;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) auto;
   gap: 18px;
   align-items: center;
 }
 
+
+/* =========================
+   Search Input
+========================= */
+
 .search-input {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
   display: flex;
   align-items: center;
   gap: 12px;
+
   padding: 0 18px;
   height: 58px;
+
   border: 1.5px solid #ddd;
   border-radius: 16px;
+
   background: white;
 }
 
 .search-input svg {
   color: #666;
+  flex-shrink: 0;
 }
 
 .search-input input {
   width: 100%;
+  min-width: 0;
+
   border: none;
   outline: none;
+
   font-size: 15px;
   background: transparent;
 }
 
+
+/* =========================
+   Selects
+========================= */
+
 .search-panel select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+
   height: 58px;
+
   border-radius: 16px;
   border: 1.5px solid #ddd;
+
   padding: 0 18px;
+
   font-size: 15px;
   outline: none;
+
   background: white;
   cursor: pointer;
 }
+
+
+/* =========================
+   Focus
+========================= */
 
 .search-panel input:focus,
 .search-panel select:focus,
@@ -80,17 +139,28 @@
   border-color: #ffc94a;
 }
 
+
+/* =========================
+   Find Notes Button
+========================= */
+
 .search-panel button {
   height: 58px;
   padding: 0 32px;
+
   border: none;
   border-radius: 16px;
+
   background: #1f1f24;
   color: white;
+
   font-size: 15px;
   font-weight: 600;
+
   cursor: pointer;
-  transition: .25s;
+  transition: 0.25s;
+
+  white-space: nowrap;
 }
 
 .search-panel button:hover {
@@ -98,46 +168,73 @@
   background: #111;
 }
 
-/* Result Count */
+
+/* =========================
+   Result Count
+========================= */
 
 .result-count {
+  width: 100%;
   max-width: 1200px;
   margin: 45px auto 25px;
+
   font-size: 18px;
   font-weight: 600;
   color: #1f1f24;
+
+  box-sizing: border-box;
 }
 
-/* Grid */
+
+/* =========================
+   Notes Grid
+========================= */
 
 .notes-grid {
+  width: 100%;
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
 
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(320px, 100%), 1fr)
+  );
+
   gap: 28px;
 }
 
-/* Loading */
+
+/* =========================
+   Loading
+========================= */
 
 .loading {
   text-align: center;
-  padding: 80px;
+  padding: 80px 20px;
   color: #666;
 }
 
-/* Empty */
+
+/* =========================
+   Empty Notes
+========================= */
 
 .empty-notes {
+  width: 100%;
   max-width: 1200px;
   margin: 80px auto;
+
+  box-sizing: border-box;
+
   background: white;
   border-radius: 24px;
   padding: 80px;
+
   text-align: center;
   color: #777;
-  box-shadow: 0 12px 30px rgba(0,0,0,.06);
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
 }
 
 .empty-notes h2 {
@@ -148,84 +245,159 @@
   font-size: 15px;
 }
 
-/* Responsive */
 
-@media(max-width:1100px){
+/* =========================
+   Tablet
+========================= */
 
-.search-panel{
+@media (max-width: 1100px) {
 
-grid-template-columns:1fr;
+  .search-panel {
+    grid-template-columns: 1fr;
+  }
 
+  .search-panel button {
+    width: 100%;
+  }
 }
 
-.search-panel button{
 
-width:100%;
+/* =========================
+   Mobile
+========================= */
 
+@media (max-width: 768px) {
+
+  .browse-page {
+    padding: 100px 16px 50px;
+  }
+
+  .browse-header {
+    margin-bottom: 35px;
+  }
+
+  .browse-header h1 {
+    font-size: 42px;
+  }
+
+  .browse-header p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .search-panel {
+    width: 100%;
+    padding: 20px;
+    border-radius: 22px;
+
+    gap: 14px;
+  }
+
+  .search-input {
+    width: 100%;
+    height: 54px;
+    padding: 0 16px;
+  }
+
+  .search-input input {
+    font-size: 16px;
+  }
+
+  .search-panel select {
+    width: 100%;
+    height: 54px;
+    padding: 0 16px;
+    font-size: 16px;
+  }
+
+  .search-panel button {
+    width: 100%;
+    height: 54px;
+    font-size: 16px;
+  }
+
+  .notes-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .result-count {
+    margin: 35px auto 20px;
+  }
+
+  .empty-notes {
+    padding: 50px 25px;
+    margin: 50px auto;
+  }
 }
 
+
+/* =========================
+   Small Mobile
+========================= */
+
+@media (max-width: 480px) {
+
+  .browse-page {
+    padding: 90px 12px 40px;
+  }
+
+  .browse-header {
+    padding: 0 8px;
+    margin-bottom: 30px;
+  }
+
+  .browse-header h1 {
+    font-size: 34px;
+    line-height: 1.2;
+  }
+
+  .browse-header p {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .search-panel {
+    padding: 16px;
+    border-radius: 20px;
+    gap: 12px;
+  }
+
+  .search-input {
+    height: 52px;
+    padding: 0 14px;
+    border-radius: 14px;
+  }
+
+  .search-panel select {
+    height: 52px;
+    padding: 0 14px;
+    border-radius: 14px;
+  }
+
+  .search-panel button {
+    height: 52px;
+    border-radius: 14px;
+  }
 }
 
-@media(max-width:768px){
 
-.browse-page{
+/* =========================
+   Very Small Screens
+========================= */
 
-padding:100px 20px 50px;
+@media (max-width: 360px) {
 
-}
+  .browse-page {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
 
-.browse-header h1{
+  .browse-header h1 {
+    font-size: 30px;
+  }
 
-font-size:42px;
-
-}
-
-.browse-header p{
-
-font-size:16px;
-
-}
-
-.notes-grid{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
-@media(max-width:480px){
-
-.browse-header h1{
-
-font-size:34px;
-
-}
-
-.search-panel{
-
-padding:20px;
-
-border-radius:20px;
-
-}
-
-.search-input{
-
-height:52px;
-
-}
-
-.search-panel select{
-
-height:52px;
-
-}
-
-.search-panel button{
-
-height:52px;
-
-}
-
+  .search-panel {
+    padding: 14px;
+  }
 }
