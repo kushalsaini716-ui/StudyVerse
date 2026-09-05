@@ -7,6 +7,7 @@ export async function getNotes(filters = {}) {
   if (filters.search) params.append("search", filters.search);
   if (filters.college) params.append("college", filters.college);
   if (filters.branch) params.append("branch", filters.branch);
+  if (filters.year) params.append("year", filters.year);
 
   const response = await fetch(
     `${API_URL}/api/notes?${params.toString()}`

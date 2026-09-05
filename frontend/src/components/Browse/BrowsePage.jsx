@@ -15,12 +15,11 @@ import NoteCard from "./NoteCard";
 export default function BrowsePage() {
 
     const [notes, setNotes] = useState([]);
-
     const [search, setSearch] = useState("");
 
     const [college, setCollege] = useState("");
-
     const [branch, setBranch] = useState("");
+    const [year, setYear] = useState("");
 
     const [loading, setLoading] = useState(false);
 
@@ -31,13 +30,10 @@ export default function BrowsePage() {
         try {
 
             const data = await getNotes({
-
                 search,
-
                 college,
-
-                branch
-
+                branch,
+                year
             });
 
             setNotes(data.notes);
@@ -162,6 +158,13 @@ export default function BrowsePage() {
 
                     }
 
+                </select>
+                <select value={year} onChange={(e) => setYear(e.target.value)}>
+                    <option value="">All Years</option>
+                    <option value="1">1st Year</option>
+                    <option value="2">2nd Year</option>
+                    <option value="3">3rd Year</option>
+                    <option value="4">4th Year</option>
                 </select>
 
                 <button onClick={fetchNotes}>

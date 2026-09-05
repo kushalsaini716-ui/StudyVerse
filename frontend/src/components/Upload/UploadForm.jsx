@@ -15,8 +15,10 @@ export default function UploadForm() {
   const inputRef = useRef(null);
 
   const [file, setFile] = useState(null);
+
   const [college, setCollege] = useState("");
   const [branch, setBranch] = useState("");
+  const [year, setYear] = useState("");
 
   const handleBrowse = () => {
     inputRef.current.click();
@@ -40,7 +42,7 @@ export default function UploadForm() {
   };
 
   const handleUpload = async () => {
-    if (!file || !college || !branch) {
+    if (!file || !college || !branch || !year) {
       alert("Please complete all fields.");
       return;
     }
@@ -50,6 +52,7 @@ export default function UploadForm() {
     formData.append("pdf", file);
     formData.append("college", college);
     formData.append("branch", branch);
+    formData.append("year", year);
 
     try {
       const response = await fetch(
@@ -71,6 +74,7 @@ export default function UploadForm() {
       setFile(null);
       setCollege("");
       setBranch("");
+      setYear("");
 
     } catch (error) {
       console.error(error);
@@ -147,6 +151,13 @@ export default function UploadForm() {
               {item}
             </option>
           ))}
+        </select>
+        <select value={year} onChange={(e) => setYear(e.target.value)}>
+          <option value="">Select Year</option>
+          <option value="1">1st Year</option>
+          <option value="2">2nd Year</option>
+          <option value="3">3rd Year</option>
+          <option value="4">4th Year</option>
         </select>
       </div>
 

@@ -1,8 +1,10 @@
 import prisma from "../config/prisma.js";
-import { uploadPdf } from "../services/cloudinaryService.js";
+import { uploadPdf } from "../services/supabaseService.js";
+
 
 export const uploadNote = async (req, res) => {
     try {
+        
         if (!req.file) {
             return res.status(400).json({
                 success: false,
@@ -10,55 +12,66 @@ export const uploadNote = async (req, res) => {
             });
         }
 
-        const { college, branch } = req.body;
+        
+        const { college, branch, year } = req.body;
 
-        if (!college || !branch) {
+        
+        if (!college || !branch || !year) {
             return res.status(400).json({
                 success: false,
-                message: "College and Branch are required.",
+                message: "College, Branch and Year are required.",
             });
         }
 
+        console.log("Uploading file:", req.file.originalname);
 
-        console.log("Original Name:", req.file.originalname);
-console.log(req.file);
-
+        
         const uploadedFile = await uploadPdf(
             req.file.buffer,
             req.file.originalname
         );
 
-        console.log(uploadedFile);
+        console.log("Supabase upload successful:", uploadedFile);
 
-
+        
         const note = await prisma.note.create({
             data: {
                 fileName: req.file.originalname,
                 college,
                 branch,
-                fileUrl: uploadedFile.secure_url,
+                year,
+                fileUrl: uploadedFile.publicUrl,
             },
         });
 
-        res.status(201).json({
+        console.log("Note saved to database:", note.id);
+
+        return res.status(201).json({
             success: true,
             message: "Note uploaded successfully!",
             note,
         });
 
     } catch (error) {
-        console.error("Upload Error:", error);
+        console.error("UPLOAD NOTE ERROR:", error);
 
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
-            message: "Internal Server Error",
+            message: "Failed to upload note.",
         });
     }
 };
 
+
+
 export const getAllNotes = async (req, res) => {
     try {
-        const { search, college, branch } = req.query;
+        const {
+            college,
+            branch,
+            year,
+            search,
+        } = req.query;
 
         const notes = await prisma.note.findMany({
             where: {
@@ -68,26 +81,36 @@ export const getAllNotes = async (req, res) => {
                         mode: "insensitive",
                     },
                 }),
-                ...(college && { college }),
-                ...(branch && { branch }),
+
+                ...(college && {
+                    college,
+                }),
+
+                ...(branch && {
+                    branch,
+                }),
+
+                ...(year && {
+                    year,
+                }),
             },
+
             orderBy: {
                 createdAt: "desc",
             },
         });
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             notes,
         });
 
     } catch (error) {
-  console.error("GET NOTES ERROR:", error);
+        console.error("GET NOTES ERROR:", error);
 
-  res.status(500).json({
-    success: false,
-    message: error.message,
-  });
-}
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch notes.",
+        });
+    }
 };
-
