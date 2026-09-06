@@ -3,7 +3,11 @@
 import { useRef, useState } from "react";
 import "./UploadForm.css";
 
-import { UploadCloud, FileText } from "lucide-react";
+import {
+  UploadCloud,
+  FileText,
+  Loader2,
+} from "lucide-react";
 
 import { colleges } from "@/data/colleges";
 import { branches } from "@/data/branches";
@@ -20,12 +24,15 @@ export default function UploadForm() {
   const [branch, setBranch] = useState("");
   const [year, setYear] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const handleBrowse = () => {
     inputRef.current.click();
   };
 
   const handleFile = (e) => {
     if (!e.target.files[0]) return;
+
     setFile(e.target.files[0]);
   };
 
@@ -46,6 +53,9 @@ export default function UploadForm() {
       alert("Please complete all fields.");
       return;
     }
+
+    // Start loading state
+    setLoading(true);
 
     const formData = new FormData();
 
@@ -69,25 +79,41 @@ export default function UploadForm() {
         throw new Error(data.message || "Upload failed");
       }
 
+      // Success
       alert(data.message);
 
+      // Reset form
       setFile(null);
       setCollege("");
       setBranch("");
       setYear("");
 
+      // Reset file input
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
+
     } catch (error) {
       console.error(error);
+
       alert(error.message || "Upload failed");
+
+    } finally {
+      // Stop loading state
+      setLoading(false);
     }
   };
 
   return (
     <section className="upload-section">
+
       <h1>Upload Notes</h1>
 
-      <p>Share your notes with students across colleges.</p>
+      <p>
+        Share your notes with students across colleges.
+      </p>
 
+      {/* Drag & Drop Area */}
       <div
         className="drop-area"
         onDrop={handleDrop}
@@ -99,7 +125,11 @@ export default function UploadForm() {
 
         <span>or</span>
 
-        <button type="button" onClick={handleBrowse}>
+        <button
+          type="button"
+          onClick={handleBrowse}
+          disabled={loading}
+        >
           Browse File
         </button>
 
@@ -112,8 +142,10 @@ export default function UploadForm() {
         />
       </div>
 
+      {/* Selected File */}
       {file && (
         <div className="selected-file">
+
           <FileText size={22} />
 
           <div>
@@ -123,50 +155,106 @@ export default function UploadForm() {
               {(file.size / (1024 * 1024)).toFixed(2)} MB
             </span>
           </div>
+
         </div>
       )}
 
+      {/* Dropdowns */}
       <div className="dropdowns">
+
+        {/* College */}
         <select
           value={college}
           onChange={(e) => setCollege(e.target.value)}
+          disabled={loading}
         >
-          <option value="">Select College</option>
+          <option value="">
+            Select College
+          </option>
 
           {colleges.map((item) => (
-            <option key={item} value={item}>
+            <option
+              key={item}
+              value={item}
+            >
               {item}
             </option>
           ))}
         </select>
 
+        {/* Branch */}
         <select
           value={branch}
           onChange={(e) => setBranch(e.target.value)}
+          disabled={loading}
         >
-          <option value="">Select Branch</option>
+          <option value="">
+            Select Branch
+          </option>
 
           {branches.map((item) => (
-            <option key={item} value={item}>
+            <option
+              key={item}
+              value={item}
+            >
               {item}
             </option>
           ))}
         </select>
-        <select value={year} onChange={(e) => setYear(e.target.value)}>
-          <option value="">Select Year</option>
-          <option value="1">1st Year</option>
-          <option value="2">2nd Year</option>
-          <option value="3">3rd Year</option>
-          <option value="4">4th Year</option>
+
+        {/* Year */}
+        <select
+          value={year}
+          onChange={(e) => setYear(e.target.value)}
+          disabled={loading}
+        >
+          <option value="">
+            Select Year
+          </option>
+
+          <option value="1">
+            1st Year
+          </option>
+
+          <option value="2">
+            2nd Year
+          </option>
+
+          <option value="3">
+            3rd Year
+          </option>
+
+          <option value="4">
+            4th Year
+          </option>
         </select>
+
       </div>
 
+      {/* Upload Button */}
       <button
         className="upload-btn"
         onClick={handleUpload}
+        disabled={loading}
       >
-        Upload Note
+        {loading ? (
+          <>
+            <Loader2
+              size={20}
+              className="upload-spinner"
+            />
+
+            Uploading...
+          </>
+        ) : (
+          <>
+            <UploadCloud size={20} />
+
+            Upload Note
+          </>
+        )}
       </button>
+
     </section>
   );
 }
